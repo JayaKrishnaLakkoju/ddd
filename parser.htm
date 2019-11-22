@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  
+      <!-- <div id="aa">
+        <ul id="a">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+      </div> -->
+
+      <div id="chart">
+
+          <div class="bar"></div>
+
+      </div>
+    
+    
+    
+    
+    
+    
+    <script>
+
+        // var vv = [1,2,3,4];
+
+        // var h = d3.select('#aa')
+        //           .select('#a')
+        //           .selectAll('li')
+        //           .data(vv)
+        //           .text(function(d){
+        //               return d;
+        //           });
+
+        var da = [100, 200, 15, 400];
+        var ya = [10, 20 , 300, 150];
+        var width="600", height="400";
+          var gt = d3.select('#chart')
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height)
+                    .style('background-color', 'skyblue');
+
+
+                  gt.append('text')
+                    .attr('transform', 'translate(100,0)')
+                    .attr('x', 150) 
+                    .attr('y', 11)
+                    .text(' bar chart');
+
+          var x_scale = d3.scaleLinear()
+                          .domain([0, d3.max(da)])  
+                          .range([50, 500]); 
+   
+          var x_translate = height/2 + 160;
+         var bottom = d3.axisBottom()
+                        .scale(x_scale);
+
+                        gt.append('g')
+                          .attr("transform", "translate(21, "+x_translate +")")
+                          .call(bottom)
+                          .attr('text-anchor','right')
+                          .attr('stroke', 'red')
+                          .append('text')
+                          .text('years');
+                          // .style('text-color', 'yellow');
+
+        var y_scale = d3.scaleLinear()
+                          .domain([0, d3.max(da)])  
+                          .range([height , 0]); 
+         var left  = d3.axisLeft()
+                       .scale(y_scale);
+
+                       gt.append('g')    
+                        .attr('transform', 'translate(70, 10)') 
+                        .call(left)
+                        .attr('text-anchor', 'end')
+                        .attr('stroke', 'red')
+                        .append('text')
+                        .text('sales')
+                        // .style('text-color', 'red');
+
+                        gt.selectAll('.bar')
+                         .append('rect')
+                         .attr('class', 'bar')
+                         .attr('x', function(d){
+                               return x_scale(d);
+                         })
+                         .attr('y', function(d){
+                               return y_scale(d.value);
+                         })
+                         .attr('width', x_scale(da))
+                         .attr('height',  y_scale(ya));
+                         
+                         
+                        
+                        
+                  
+    
+    </script>
+
+    
+</body>
+</html>

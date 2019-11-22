@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="d"></p>
+    <p id="dd"></p>
+    <p id="ddd"></p>
+
+    <script>
+
+      var ad = ( function(first){
+
+              
+                 return function(second, third) {
+                             
+                             return first + second + third;
+                                       }
+                                    
+     
+               })('+91');
+
+      document.getElementById('d').innerHTML = ad(' 8500913198', ' hhhhh');
+
+
+      //object accesors
+      
+      var hum = {
+                name : 'jay',
+
+                roll : 'FL906',
+
+                language : 'english',
+
+                lignguistic : '',
+
+                get lang()
+                {
+                    return this.language;
+                },
+
+                  this.lignguistic = ll;
+                }
+      }
+
+           hum.ll = 'spain';
+
+      document.getElementById('dd').innerHTML = hum.lang;
+
+      document.getElementById('ddd').innerHTML = hum.lignguistic;
+
+
+    </script>
+</body>
+</html>

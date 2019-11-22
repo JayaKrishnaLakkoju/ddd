@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" id="box" />
+<button onclick="fun()">clickme</button>
+
+<p id="dem"></p>
+<p id="dem1"></p>
+
+<script>
+
+function fun(){
+    var sub = [];
+    var sue = document.getElementById('box').value;
+     sub.push(sue);
+
+
+          text = "<ul>";
+          sub.forEach(myfun);
+          text += "</ul>";
+          function myfun(value)
+         {
+            text += "<li>" + value+ "</li>";
+            for(let i=0;i<sub.length;i++){
+            var a =  document.getElementById('dem').innerText = sub[i];
+              sue = document.getElementById('box').value = '';
+              document.getElementById('dem1').innerText = a;
+             
+        }  
+          }       
+        console.log(sub);
+  
+}
+
+
+
+
+</script>
+
+   
+</body>
+</html>

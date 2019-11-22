@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+
+
+     <div id="create">
+     </div>
+     <div id="create1">
+        </div>
+
+        <div id="create2">
+            </div>
+
+
+    <svg width="300" height="100">
+        <line x1="0" y1="0" x2="1000" y2="0" stroke="red"/>
+    
+    </svg>
+
+    
+     <style>
+         .br{
+             color : orange;
+         }
+     
+     
+     </style>
+
+      <p class="hell">this is the first paragraph...</p>
+      <p id="a">this is the second paragraph...</p>
+      <p>this is the third paragraph...</p>
+
+     <table>
+         <tr>
+             <td>jay</td>
+             <td>krishna</td>
+         </tr>
+         <tr>
+                <td>sai</td>
+                <td>krishna</td>
+            </tr>
+     </table>
+
+
+     <p id="hello"> </p>
+
+     <p id="hell"> heyy</p>
+     <h3 class="br">now it self</h3>
+
+     
+     <p class="aaaa"></p>
+     <p class="aaaa"></p>
+     <p class="aaaa"></p>
+     <p class="aaaa"></p>
+
+
+   <!-- <svg width="200" height="200">
+       <rect x="100" y="100" width="150" height="150" fill="yellow"/>
+   </svg> -->
+
+   <!--scaling example........-->
+     <div id="scale">
+
+     </div>
+
+
+     <div id="scale1">
+
+    </div>
+
+
+
+
+
+
+
+    <script>
+
+       // text(), append(), remove(), classed(), html('<p>hello</p>'), insert(), attr(class or id, classname or id name), classed(classname, true || false);
+
+
+
+        // d3 js code will be here...
+        //  d3 is global java script object here
+       d3.select('#a').style("color","blue");
+       d3.select('.hell').style("font-size", "30px");
+
+       // for table...
+       d3.selectAll('tr').selectAll('td').style("background-color", "red");
+
+       //for the manipulating dom elements...
+       d3.select('#hello').append('div').text(' Hy Akhil...');
+
+    //    d3.select('#hell').insert('h1').text('i am the new element as h1');
+
+    //    d3.select('#hell').remove();
+    d3.select('#hell').html('<h2>hey hello world</h2>');
+
+
+    d3.select('h3').classed('br', true);
+
+
+    var new_data = [1, 2, 3, 4];
+   var para = d3.selectAll('.aaaa')
+       .data(new_data)
+       .text(function(d, i){
+
+           console.log(":d:", + d);
+           console.log(":i:", + i);
+           console.log(":this:", + this);
+
+           return d;
+
+       }
+
+       )
+
+
+// svg line with d3.js....
+       var width="300", height="300";
+
+       var svgelement = d3.select('#create')
+                        .append('svg')
+                        .attr("width", width)
+                        .attr("height", height)
+                        .style("background-color", "orange")
+                       
+
+        svgelement.append("line")
+                   .attr("x1", "1")
+                   .attr("y1", "1" )   
+                   .attr("x2","500")
+                   .attr("y2", "500")
+                   .attr("stroke", "black")
+                   
+                   
+             
+
+              
+
+
+// svg rectangle in d3.js...
+var svgelements = d3.select('#create1')
+                 .append('svg')
+                 .attr("width", width)
+                 .attr("height", height)
+                 .style("background-color", "orange");
+
+ var h = svgelements.append("rect")
+            .attr("x", "100")
+            .attr("y", "0" )   
+            .attr("width","500")
+            .attr("height", "300")
+            .attr("stroke", "black");
+
+//svg circle in d3
+
+var svgelementsss = d3.select('#create1')
+                 .append('svg')
+                 .attr("width", width)
+                 .attr("height", height)
+                 .style("background-color", "yellow");
+
+ var hss = svgelementsss.append("circle")
+            .attr("cx", "100")
+            .attr("cy", "100" )  
+            .attr("r", "140" )   
+            .attr("stroke", "#fff");
+
+
+
+            //scaling example and bar charts....
+
+            var the_data = [100, 200, 100, 500, 1000];
+
+            var width="500", barHeight = "90", margin =50;
+
+            var the_scale = d3.scaleLinear()
+                              .domain([d3.min(the_data), d3.max(the_data)])
+                              .range([ 50, 300]);
+
+            var ss = d3.select("#scale")
+                       .append('svg')
+                       .attr("width", width)
+                       .attr('height', barHeight * the_data.length)
+                       .style('background-color', 'pink');
+
+           var g = ss.selectAll("g")
+                      .data(the_data)
+                      .enter()
+                      .append("g")
+                      .attr("transform", function (d, i) {
+                      return "translate(13," + i * barHeight + ")";
+                  });
+
+                  g.append("rect")
+                   .attr("width", function (d) {
+                     return the_scale(d);
+                       })
+                   .attr("height", barHeight - margin);
+
+                   g.append('text')
+                    .attr('x', function (d){
+                        return (the_scale(d));
+                    })
+                    .attr('y', barHeight/5)
+                    .attr('dy', ".35em")
+                    .text( function(d){
+                        return d;
+                    });
+                   
+
+   // axes renders the human readable marks for scales...
+
+     var j = [10, 20, 15, 30, 50];
+     var j1 = [10,22,44,33,33];
+
+     var height="400", width="400";
+
+     var hello = d3.select('#scale1')
+                   .append('svg')
+                   .attr('width', width)
+                   .attr('height', height)
+                   .style('background-color', 'orange');
+
+
+                 
+     
+     var new_scale = d3.scaleLinear()
+                       .domain([d3.min(j), d3.max(j)])
+                       .range([0, width - 50]);
+
+     var bottom_axis = d3.axisBottom()
+                          .scale(new_scale);
+          
+                      hello.append('g')
+                           .call(bottom_axis);
+
+    var y_scale = d3.scaleLinear()
+                    .domain([d3.min(j1), d3.max(j1)])
+                    .range([0, height / 2]);
+     
+     var left_axis = d3.axisLeft()
+                    .scale(y_scale);
+
+                    hello.append('g')
+                         .call(y_scale);
+                  
+
+
+
+
+                 
+    
+    
+    </script>
+</body>
+</html
